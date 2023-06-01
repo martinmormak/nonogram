@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gamestudio-Nonogram-Reviews</title>
+  <link rel="stylesheet" href="/css/stylesheet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="main">
+  <div th:replace="fragments/fragments::header"></div>
+  <div class="intiscreeen">
+    <img src="/images/averagerating.jpg" class="revieweimage">
+    <h2>Average rating</h2>
+    <br/>
+    <div class="stars">
+      <h3 class="averagerating" th:text="${@reviewedController.getAverageRatingValue()}"></h3>
+      <th:block th:if="${@reviewedController.getAverageRatingValue() == -1}">
+        <h2>Rates was not found.</h2>
+      </th:block>
+      <th:block th:unless="${@reviewedController.getAverageRatingValue() == -1}">
+        <div th:each="star:${#numbers.sequence(1,@reviewedController.getAverageRatingValue(),1)}">
+          <span class="fa fa-star checked"></span>
+        </div>
+        <div th:each="star:${#numbers.sequence(4,@reviewedController.getAverageRatingValue(),-1)}">
+          <span class="fa fa-star"></span>
+        </div>
+      </th:block>
+    </div>
+
+    <hr/>
+    <img src="/images/reviewes.jpg" class="revieweimage">
+    <h2>Reviews</h2>
+  </div>
+  <br/>
+  <!--<span th:utext="${@scoreService.getTopScores('nonogram')}"></span>-->
+  <table class='reviews'>
+    <thead>
+      <tr class='head'>
+        <th>Player</th>
+        <th>Comment</th>
+        <th>Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="comment:${comments}">
+        <td th:text="${comment.getPlayer()}"></td>
+        <td th:text="${comment.getComment()}"></td>
+        <td th:if="${@reviewedController.getRatingValue(comment.getPlayer()) == -1}">Rate was not found.</td>
+        <td th:if="${@reviewedController.getRatingValue(comment.getPlayer()) != -1}" class="stars">
+          <h3 class="averagerating" th:text="${@reviewedController.getRatingValue(comment.getPlayer())}"></h3>
+          <div th:each="star:${#numbers.sequence(1,@reviewedController.getRatingValue(comment.getPlayer()),1)}">
+            <span class="fa fa-star checked"></span>
+          </div>
+          <div th:each="star:${#numbers.sequence(4,@reviewedController.getRatingValue(comment.getPlayer()),-1)}">
+            <span class="fa fa-star"></span>
+          </div>
+        </td>
+
+
+      </tr>
+    </tbody>
+  </table>
+  <div th:if="${@userController.logged}">
+    <h2>You can add review here</h2>
+    <form class="loginform" action="http://localhost:8080/reviewed/addreviewed" method="post" value="Login Form">
+      <label>Comment:</label></br>
+      <textarea name="comment" rows="10" cols="30"></textarea><br/>
+      <label>Stars:</label></br>
+      <input type="number" name="rating" min="0" max="5"><br/>
+      <input type="submit" value="Upload review">
+    </form>
+  </div>
+  <div th:if="not ${@userController.logged}">
+    <h2>You must be longed to add review</h2>
+  </div>
+  <div th:replace="fragments/fragments::footer"></div>
+</div>
+</body>
+</html>

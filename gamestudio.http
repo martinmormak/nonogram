@@ -1,0 +1,9 @@
+POST http://localhost:8080/api/rating
+Content-Type: application/json
+
+{
+"game": "nonogram",
+"player": "martin",
+"stars": 2,
+"ratedAt": "2019-03-25T12:40:33"
+}

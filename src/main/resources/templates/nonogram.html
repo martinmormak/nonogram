@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gamestudio-Nonogram</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<body>
+
+<div class="main">
+    <div th:replace="fragments/fragments::header"></div>
+
+    <div class="intiscreeen">
+        <img src="/images/nonogram.jpg" class="nonogramimage">
+        <h2>Nonogram puzzle</h2>
+    </div>
+
+    <table class='colormenu'>
+        <tr>
+            <td class='white'>
+                <a href='/nonogram/change?color=white'></a>
+                <span>white</span>
+            </td>
+            <td class='red'>
+                <a href='/nonogram/change?color=red'></a>
+                <span>red</span>
+            </td>
+            <td class='green'>
+                <a href='/nonogram/change?color=green'></a>
+                <span>green</span>
+            </td>
+            <td class='blue'>
+                <a href='/nonogram/change?color=blue'></a>
+                <span>blue</span>
+            </td>
+            <td class='yellow'>
+                <a href='/nonogram/change?color=yellow'></a>
+                <span>yellow</span>
+            </td>
+            <td class='pink'>
+                <a href='/nonogram/change?color=pink'></a>
+                <span>pink</span>
+            </td>
+            <td class='cyan'>
+                <a href='/nonogram/change?color=cyan'></a>
+                <span>cyan</span>
+            </td>
+            <td class='black'>
+                <a href='/nonogram/change?color=black'></a>
+                <span>black</span>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+
+    <!--<span th:utext="${@nonogramController.getHtmlField}"></span>-->
+
+    <br/>
+
+    <table class="nonogramfield">
+        <tbody>
+        <tr th:each="actualRow: ${#numbers.sequence(field.getRowCount() - @nonogramController.countMaxNotEmptyRowsInColumnField(), field.getRowCount() - 1)}">
+            <td class="white" th:each="actualColumn: ${#numbers.sequence(field.getColumnCount() - @nonogramController.countMaxNotEmptyRowsInRowField() + 1, field.getColumnCount())}"></td>
+            <td th:each="actualColumn: ${#numbers.sequence(0, field.getColumnCount() - 1)}"
+                th:class="${field.getColumnField()[actualColumn][actualRow] != null && field.getColumnField()[actualColumn][actualRow].getValue() != 0} ? ${@nonogramController.getTileColor(field.getColumnField()[actualColumn][actualRow])} : 'white'">
+                <span th:if="${field.getColumnField()[actualColumn][actualRow] != null && field.getColumnField()[actualColumn][actualRow].getValue() != 0}"
+                      th:text="${@nonogramController.getColumnValue(actualColumn,actualRow)}"></span>
+            </td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr th:each="actualRow: ${#numbers.sequence(0, field.getRowCount() - 1)}">
+            <td th:each="actualColumn: ${#numbers.sequence(field.getColumnCount() - @nonogramController.countMaxNotEmptyRowsInRowField(), field.getColumnCount() - 1)}"
+                th:class="${field.getRowField()[actualRow][actualColumn] != null && field.getRowField()[actualRow][actualColumn].getValue() != 0} ? ${@nonogramController.getTileColor(field.getRowField()[actualRow][actualColumn])} : 'white'">
+                <span th:if="${field.getRowField()[actualRow][actualColumn] != null && field.getRowField()[actualRow][actualColumn].getValue() != 0}"
+                      th:text="${@nonogramController.getRowValue(actualColumn,actualRow)}"></span>
+            </td>
+            <td th:each="actualColumn: ${#numbers.sequence(0, field.getColumnCount() - 1)}"
+                th:class="${field.getActualFieldTile(actualRow, actualColumn) != null} ? ${@nonogramController.getTileColor(field.getActualFieldTile(actualRow, actualColumn))} : 'white'">
+                <a th:href="@{/nonogram(row=${actualRow}, column=${actualColumn})}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/>
+
+
+    <button class="newgamebutton"><a href="/nonogram/new">New game</a></button>
+    </br></br>
+    <form class="savegameform" action="http://localhost:8080/nonogram/saveGame" method="post">
+        <label>Slot for save:</label></br>
+        <input type="text" name="slotNumber"><br/>
+        <input class="savegamebutton" type="submit" value="Submit">
+    </form>
+
+
+    <br/>
+
+    <div th:replace="fragments/fragments::footer"></div>
+</div>
+</body>
+</html>

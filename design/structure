@@ -1,0 +1,16 @@
+java
+    sk.tuke.gamestudio.Main - hlavná trieda aplikácie s metódou main
+java.core - balík obsahuje triedy definujúce logiku herného poľa, nezávislé od používateľského rozhrania
+    Field - trieda reprezentujúca herné pole a jeho funkčnosť. Herné pole obsahuje dlaždice
+    FieldGenerator - trieda reprezentujúca generator herného poľa
+    Tile - rozhranie reprezentujúca dlaždicu herného poľa. Dlaždice sú dvoch typov: ColorTile a NumberTile
+    ColorTile - trieda reprezentujúca dlaždicu farby
+    NumberTile - trieda reprezentujúca dlaždicu nápovied
+    FieldState - enumeračný typ vyjadrujúci stav poľa
+    TileState - enumeračný typ vyjadrujúci stav dlaždice
+java.game - balík obsahuje triedy definujúce hru
+    Game - trieda na voľbu UI
+java.userInterface - balík obsahuje triedy definujúce UI
+    UserInterface - rozhranie pre UI. UI je dvoch typov: ConsoleUI a JFrameUI
+    ConsoleUI - entita pre konzolové rozhranie s použivateľom
+    JFrameUI - entita pre grafické rozhranie s použivateľom

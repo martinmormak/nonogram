@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Gamestudio-Home</title>
+  <link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<body>
+<div class="main">
+  <div th:replace="fragments/fragments::header"></div>
+  <h1 class="welcomeTitle">Welcome at Gamestudio</h1>
+  <div th:if="${@userController.logged}">
+    <button class="logoutbutton"><a href="/logout">Logout</a></button>
+    <br/>
+    <!--a th:if="${@userController.logged}" href="/logout">Logout</a><br/>-->
+    <h2>Chose if you want load new game or load before saved game</h2>
+    <button class="newgamebutton"><a href="/nonogram/new">New game</a></button>
+    <h2>Saved game</h2>
+    <!--<span th:utext="${@userController.getSaves}"></span>-->
+    <div th:if="${#lists.isEmpty(saves)}">
+      <h4>I didn't find any saved games</h4>
+    </div>
+    <div th:if="${not #lists.isEmpty(saves)}">
+      <table class="saves">
+        <thead>
+        <tr>
+          <th>Slot Number</th>
+          <th>Player</th>
+          <th>Played On</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data : ${saves}">
+          <td><a th:href="@{/nonogram/loadGame(slotNumber=${data.ident})}" th:text="${data.ident}" /></td>
+          <td th:text="${data.player}" />
+          <td th:text="${data.playedOn}" />
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div th:if="not ${@userController.logged}">
+    <h3 class="loginregiseter">Please login or register</h3>
+    <table>
+      <tr>
+        <td>
+          <h4 class="loginregiseter">Login form</h4>
+          <form class="loginform" action="http://localhost:8080/login" method="post" value="Login Form">
+            <label>User Name:</label></br>
+            <input type="text" name="playerName"><br/>
+            <label>Password:</label></br>
+            <input type="password" name="password"><br/>
+            <input type="submit" value="Login">
+          </form>
+        </td>
+        <td>
+          <h4 class="loginregiseter">Register form</h4>
+          <form class="registerform" action="http://localhost:8080/register" method="post" value="Register Form">
+            <label>User Name:</label></br>
+            <input type="text" name="playerName"><br/>
+            <label>Password:</label></br>
+            <input type="password" name="password"><br/>
+            <input type="submit" value="Register">
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div th:replace="fragments/fragments::footer"></div>
+</div>
+</body>
+</html>

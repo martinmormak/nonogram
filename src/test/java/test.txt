@@ -1,0 +1,5 @@
+ 4 3
+ r g b
+ y p c
+ l w w
+ l w w

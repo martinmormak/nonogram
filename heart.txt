@@ -1,0 +1,10 @@
+9 9
+w w r w w w r w w
+w r b r w r b r w
+r b b b r b b b r
+r b b b b b b b r
+r b b b b b b b r
+w r b b b b b r w
+w w r b b b r w w
+w w w r b r w w w
+w w w w r w w w w

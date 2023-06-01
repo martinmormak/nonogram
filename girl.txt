@@ -1,0 +1,21 @@
+20 20
+w w w w w w w l l l l l w w w w w w w w
+w w w w w l l l w w w w l l w w w w w w
+w w w w w l l w w l w l w l w w w w w w
+w w w w l l l l l l l l l l l w w w w w
+w w w w l l l l l l l l l l l w w w w w
+w w w w l l l l y y y y y y l w w w w w
+w w w w l l l y y l y y l y l w w w w w
+w w w w l l l y y l y y l y l l w w w w
+w w w w l l l r r y y y y l l w w w w w
+w w w l l l l l l y y l l l l w w w w w
+w w w w l l l w l w w l w l l w w w w w
+w w w w l l w w l l l l w w l w w w w w
+w w w l l l y l l l l l l y y w w w w w
+w w l l w y y l l l l l l w y y y w r r
+w w w w y y l l w w w w l l w w y y r r
+w w w y y w l w l w w l w l w w w r r r
+w w w w w l l l w l l w l l l w w r r r
+w w w w w w w y y w y y w w w w w r w r
+w l l l w w y y y w l l w w w w w w w r
+l l l y y y y y w w y y w w w w w w w w

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+  <ul class="taskbarList">
+    <li class="taskbarItem"><a href="/">Home</a></li>
+    <!--<div th:if="${@userController.logged}">
+      <li class="taskbarItem"><a href="/nonogram/new">Nonogram</a></li>
+    </div>-->
+    <li class="taskbarItem"><a href="/halloffame">Scores</a></li>
+    <li class="taskbarItem"><a href="/reviewed">Reviewed</a></li>
+  </ul>
+  <h1>Game studio 2023</h1>
+  <hr/>
+</div>
+<div th:fragment="footer">
+  <hr/>
+  <h4 class="foot">&copy; Martin Mormák, KPI FEI TUKE 2023</h4>
+</div>
+</html>

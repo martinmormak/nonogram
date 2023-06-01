@@ -1,0 +1,12 @@
+11 16
+w w l l l l l w w w l l w l l w
+w w l w w w l w w l r r l r r l
+w w l w w w l w w l r r r r r l
+w l l l w l l l w w l r r r l w
+l r r r l r r r l w w l r l w w
+l r r r r r r r l w w w l w w w
+l r r r w r r r l w w w l w w w
+w l r r w r r l w w w w l w w w
+w w l r r r l w w w w l l w w w
+w w w l r l w w w w w w l w w w
+w w w w l w w w w w w l l w w w
